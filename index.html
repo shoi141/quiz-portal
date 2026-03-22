@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>勉強クイズ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    background: linear-gradient(160deg, #f0f9ff 0%, #fdf2f8 50%, #fff7ed 100%);
+    min-height: 100vh;
+  }
+  .wrap {
+    max-width: 480px; margin: 0 auto;
+    padding: 32px 16px 40px;
+  }
+  .header {
+    text-align: center; margin-bottom: 36px;
+  }
+  .header-emoji { font-size: 64px; display: block; margin-bottom: 10px; }
+  .header-title {
+    font-size: 28px; font-weight: 900;
+    background: linear-gradient(135deg, #0369a1, #7c3aed, #ea580c);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 6px;
+  }
+  .header-sub { font-size: 13px; color: #9ca3af; }
+
+  .section-label {
+    font-size: 11px; font-weight: 900; color: #9ca3af;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin: 28px 0 12px 4px;
+  }
+
+  .subject-card {
+    display: block; text-decoration: none; color: inherit;
+    border-radius: 20px; padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.12s, box-shadow 0.12s;
+    position: relative; overflow: hidden;
+  }
+  .subject-card:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  }
+  .subject-card-inner {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .subject-emoji {
+    font-size: 44px; flex-shrink: 0;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 16px;
+  }
+  .subject-text { flex: 1; }
+  .subject-name {
+    font-size: 20px; font-weight: 900; margin-bottom: 4px;
+  }
+  .subject-desc { font-size: 12px; opacity: 0.75; line-height: 1.6; }
+  .subject-tags {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px;
+  }
+  .tag {
+    font-size: 10px; font-weight: bold;
+    padding: 2px 8px; border-radius: 99px;
+    opacity: 0.85;
+  }
+  .subject-arrow {
+    font-size: 22px; opacity: 0.4; flex-shrink: 0;
+  }
+  .subject-bg {
+    position: absolute; right: -10px; bottom: -10px;
+    font-size: 80px; opacity: 0.07; pointer-events: none;
+    line-height: 1;
+  }
+
+  /* 算数 */
+  .card-calc {
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    border: 2px solid #bfdbfe;
+  }
+  .card-calc .subject-name { color: #1d4ed8; }
+  .card-calc .subject-emoji { background: #dbeafe; }
+  .card-calc .tag { background: #dbeafe; color: #1d4ed8; }
+
+  /* 理科 */
+  .card-rika {
+    background: linear-gradient(135deg, #d1fae5, #f0fdf4);
+    border: 2px solid #a7f3d0;
+  }
+  .card-rika .subject-name { color: #065f46; }
+  .card-rika .subject-emoji { background: #d1fae5; }
+  .card-rika .tag { background: #d1fae5; color: #065f46; }
+
+  /* 国語 */
+  .card-kokugo {
+    background: linear-gradient(135deg, #f3e8ff, #fdf2f8);
+    border: 2px solid #e9d5ff;
+  }
+  .card-kokugo .subject-name { color: #581c87; }
+  .card-kokugo .subject-emoji { background: #f3e8ff; }
+  .card-kokugo .tag { background: #f3e8ff; color: #581c87; }
+
+  .footer {
+    text-align: center; margin-top: 36px;
+    font-size: 12px; color: #d1d5db;
+  }
+
+  /* 更新バッジ */
+  .new-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: #ef4444; color: #fff;
+    font-size: 10px; font-weight: 900;
+    padding: 2px 8px; border-radius: 99px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <span class="header-emoji">🎓</span>
+    <h1 class="header-title">勉強クイズ</h1>
+    <p class="header-sub">中学入試レベルの問題で実力をつけよう！</p>
+  </div>
+
+  <div class="section-label">📚 科目を選ぶ</div>
+
+  <a class="subject-card card-kokugo" href="https://shoi141.github.io/kokugo-quiz/">
+    <div class="subject-card-inner">
+      <div class="subject-emoji">📖</div>
+      <div class="subject-text">
+        <div class="subject-name">国語</div>
+        <div class="subject-desc">二字・三字・四字熟語の組み立て・意味</div>
+        <div class="subject-tags">
+          <span class="tag">二字熟語</span>
+          <span class="tag">三字熟語</span>
+          <span class="tag">四字熟語</span>
+        </div>
+      </div>
+      <div class="subject-arrow">›</div>
+    </div>
+    <div class="subject-bg">📖</div>
+  </a>
+
+  <a class="subject-card card-calc" href="https://shoi141.github.io/calc-quiz/">
+    <div class="subject-card-inner">
+      <div class="subject-emoji">🔢</div>
+      <div class="subject-text">
+        <div class="subject-name">算数</div>
+        <div class="subject-desc">文章題・図形・速さ・特殊算など19ジャンル</div>
+        <div class="subject-tags">
+          <span class="tag">和差算</span>
+          <span class="tag">旅人算</span>
+          <span class="tag">つるかめ算</span>
+          <span class="tag">図形</span>
+        </div>
+      </div>
+      <div class="subject-arrow">›</div>
+    </div>
+    <div class="subject-bg">🔢</div>
+  </a>
+
+  <a class="subject-card card-rika" href="https://shoi141.github.io/rika-quiz/">
+    <div class="subject-card-inner">
+      <div class="subject-emoji">🔬</div>
+      <div class="subject-text">
+        <div class="subject-name">理科</div>
+        <div class="subject-desc">光・音の性質（小学〜中学入試レベル）</div>
+        <div class="subject-tags">
+          <span class="tag">光の性質</span>
+          <span class="tag">音の性質</span>
+        </div>
+      </div>
+      <div class="subject-arrow">›</div>
+    </div>
+    <div class="subject-bg">🔬</div>
+  </a>
+
+  <div class="footer">
+    shoi141.github.io
+  </div>
+</div>
+</body>
+</html>
